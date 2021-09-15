@@ -9,3 +9,4 @@
 - SVM (13-Sep-2021)
 - AdaBoost (14-Sep-2021)
 - Gradient Boosting Tree (14-Sep-2021)
+- Random Forest (15-Sep-2021)
