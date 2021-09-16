@@ -10,3 +10,4 @@
 - AdaBoost (14-Sep-2021)
 - Gradient Boosting Tree (14-Sep-2021)
 - Random Forest (15-Sep-2021)
+- EM Algorithm (16-Sep-2021)
