@@ -21,11 +21,11 @@ output:
 
 设$Q=\{q_1,q_2,...,q_N\}$是所有状态的集合，$V=\{v_1,v_2,...,v_M\}$是所有观测的集合。$I=(i_1,i_2,...,i_T)$是转态序列，$O=(o_1,o_2,...,o_T)$是观测序列。
 
-状态的转移矩阵为$A=[a_{ij}]_{N\times N}$，其中$a_{ij}=P(i_{t+1}=q_j|i_t=q_i),i=1,2,...,N,j=1,2,...,N$表示在时刻$t$下不可观测的状态序列从$q_i$转移到$q_j$的概率。
+*状态的转移矩阵*为$A=[a_{ij}]_{N\times N}$，其中$a_{ij}=P(i_{t+1}=q_j|i_t=q_i),i=1,2,...,N,j=1,2,...,N$表示在时刻$t$下不可观测的状态序列从$q_i$转移到$q_j$的概率。
 
-状态观测转移的观测概率矩阵为$B=[b_j(k)]_{N\times M},j=1,2,...,N,k=1,2,...,M$，其中$b_j(k)=P(o_t=v_k|i_t=q_j)$表示在时刻$t$下不可观测的状态$q_j$转化为可观测的观测$v_k$的概率。
+*状态观测转移的观测概率矩阵*为$B=[b_j(k)]_{N\times M},j=1,2,...,N,k=1,2,...,M$，其中$b_j(k)=P(o_t=v_k|i_t=q_j)$表示在时刻$t$下不可观测的状态$q_j$转化为可观测的观测$v_k$的概率。
 
-状态的初始概率向量为$\pi=(\pi_i)$，其中$\pi_i=P(i_1=q_i),i=1,2,...,N$表示$t_1$时刻下处于状态$q_i$的概率。
+*状态的初始概率向量*为$\pi=(\pi_i)$，其中$\pi_i=P(i_1=q_i),i=1,2,...,N$表示$t_1$时刻下处于状态$q_i$的概率。
 
 隐马尔可夫模型由初始状态概率向量$\pi$，状态转移概率矩阵$A$和观测概率矩阵$B$决定。其中状态序列由$\pi,A$决定，观测序列由$B$决定。因此，隐马尔可夫模型可表示为三元组：$\lambda=(A,B,\pi)$。
 
@@ -173,9 +173,9 @@ EM算法作用于隐马尔可夫模型的计算如上所示。其被称为Baum-W
 1. 初始化，选取$a_{ij}^{(0)},b_j(k)^{(0)},\pi_i^{(0)}$，得到模型$\lambda^{(0)}=(A^{(0)},B^{(0)},\pi^{(0)})$
 2. 使用前向-后向算法计算$\alpha_t(i),\beta_t(i)$
 3. 计算$\gamma_t(j),\xi_t(i,j)$，并更新参数得到$\lambda^{(n)}=(A^{(n)},B^{(n)},\pi^{(n)})$：
-$$\hat\pi_i=\frac{P(O,i_1=i|\bar\lambda)}{P(O|\bar\lambda)}=\gamma_1(i)$$
-$$\hat a_{ij}=\frac{\sum_{t=1}^{T-1}P(O,i_t=i,i_{t+1}=j|\bar\lambda)}{\sum_{t=1}^{T-1}P(O,i_t=i|\bar\lambda)}=\frac{\sum_{t=1}^{T-1}\xi_t(i,j)}{\sum_{t=1}^{T-1}\gamma_t(i)}$$
-$$\hat b_j(k)=\frac{\sum_{t=1}^TP(O,i_t=j|\bar\lambda)I(o_t=v_k)}{\sum_{t=1}^TP(O,i_t=j|\bar\lambda)}=\frac{\sum_{t=1}^T\gamma_t(j)I(o_t=v_k)}{\sum_{t=1}^T\gamma_t(j)}$$
+$$\hat\pi_i=\gamma_1(i)$$
+$$\hat a_{ij}=\frac{\sum_{t=1}^{T-1}\xi_t(i,j)}{\sum_{t=1}^{T-1}\gamma_t(i)}$$
+$$\hat b_j(k)=\frac{\sum_{t=1}^T\gamma_t(j)I(o_t=v_k)}{\sum_{t=1}^T\gamma_t(j)}$$
 4. 重复2和3直至收敛
 
 **输出：**隐马尔可夫模型参数$\hat A,\hat B,\hat\pi$。
@@ -185,9 +185,7 @@ $$\hat b_j(k)=\frac{\sum_{t=1}^TP(O,i_t=j|\bar\lambda)I(o_t=v_k)}{\sum_{t=1}^TP(
 
 ### 近似算法
 
-近似算法在每个时刻$t$分别选择该时刻最有可能出现的状态$i_t^*$，从而得到一个状态序列$I^*=(i_1^*,i_2^*,...,i_T^*)$。
-
-由于$\gamma_t(i)=\frac{P(i_t=q_i,O|\lambda)}{P(O|\lambda)}$，因此易于发现：
+近似算法在每个时刻$t$分别选择该时刻最有可能出现的状态$i_t^*$，从而得到一个状态序列$I^*=(i_1^*,i_2^*,...,i_T^*)$。由于$\gamma_t(i)=\frac{P(i_t=q_i,O|\lambda)}{P(O|\lambda)}$，因此易于发现：
 
 $$i_t^*=arg\max_{1\le i\le N}\gamma_t(i)$$
 
@@ -214,7 +212,7 @@ $$
 
 $$\Psi_t(i)=arg\max_{1\le j\le N}[\delta_{t-1}(j)a_{ji}],\quad i=1,2,...,N$$
 
-使用函数$delta$和$\Psi$，可以得到维特比算法，其步骤如下：
+使用函数$\delta$和$\Psi$，可以得到维特比算法，其步骤如下：
 
 **输入：**模型$\lambda=(A,B,\pi)$和观测$O=\{o_1,o_2,...,o_T\}$
 
@@ -294,4 +292,122 @@ print('初始状态概率向量:\n',remodel.startprob_,
       '\n观测概率矩阵:\n',remodel.emissionprob_)
 ```
 
+
+
+## 预测算法
+
+在类中实现以下几个函数：
+
+- compute_alpha,compute_beta：分别为前向计算和后向计算
+- fit：使用Baum-Welch算法进行学习，不过在样本量较小时学习效果一般
+- approx,viterbi：分别使用近似算法和维特比算法进行状态序列的预测
+
+```{python}
+class HiddenMarkovModel:
+    
+    def __init__(self,n_components=1,max_iter=100,\
+                 pi=None,A=None,B=None):
+        self.n_components = n_components
+        self.max_iter = max_iter
+        self.pi = pi
+        self.A = A
+        self.B = B
+        
+    def compute_alpha(self,X):
+        T = len(X)
+        alpha = np.zeros((T,self.n_components))
+        for i in range(T):
+            if i==0:
+                alpha[i,:] = self.pi*self.B[:,X[i]].reshape(-1)
+            else:
+                alpha[i,:] = np.sum(self.A.T*alpha[i-1,:],1)*self.B[:,X[i]].reshape(-1)
+        return alpha
+    
+    def compute_beta(self,X):
+        T = len(X)
+        beta = np.ones((T,self.n_components))
+        for i in range(T-1,0,-1):
+            beta[i-1,:] = np.sum(self.A*self.B[:,X[i]].reshape(1,-1)*beta[i,:],0)
+        return beta   
+    
+    def compute_gamma(self):
+        return self.alpha*self.beta/np.sum(self.alpha*self.beta,1).reshape(-1,1)
+    
+    def compute_xi(self,X):
+        T,N = self.alpha.shape
+        xi = np.zeros((T-1,N,N))
+        for t in range(0,T-1):
+            for i in range(0,N):
+                for j in range(0,N):
+                    xi[t,i,j] = self.alpha[t,i]*self.A[i,j]*self.B[j,X[t+1]]*self.beta[t+1,j]
+        return xi/np.sum(np.sum(xi,2),1).reshape(-1,1,1)
+        
+    def fit(self,X):
+        N,K,T = self.n_components,len(np.unique(X)),len(X)
+        
+        self.pi = np.array([np.random.random() for _ in range(N)])
+        self.pi = self.pi/np.sum(self.pi)
+        
+        self.A = np.array([np.random.random() for _ in range(N*N)]).reshape(N,N)
+        self.A = self.A/np.sum(self.A,1).reshape(-1,1)
+        
+        self.B = np.array([np.random.random() for _ in range(N*K)]).reshape(N,K)
+        self.B = self.B/np.sum(self.B,1).reshape(-1,1)
+
+        
+        self.alpha = np.zeros((T,N))
+        self.beta = np.ones((T,N))
+        self.xi = np.zeros((T-1,N,N))
+        
+        for _ in range(self.max_iter):
+            self.alpha = self.compute_alpha(X)
+            self.beta = self.compute_beta(X)
+            self.gamma = self.compute_gamma()
+            self.xi = self.compute_xi(X)
+            
+            self.A = np.sum(self.xi,axis=0).reshape(N,N)/np.sum(self.gamma[:-1,:],axis=0)
+            self.B = np.concatenate([(np.sum((X==i)*self.gamma,0)/np.sum(self.gamma,0)).\
+                    reshape(N,1) for i in range(K)],1)
+            self.pi = self.gamma[0,:].reshape(-1)
+            
+    def approx(self,O):
+        alpha = self.compute_alpha(O)
+        beta = self.compute_beta(O)
+        gamma = alpha*beta/np.sum(alpha*beta,1).reshape(-1,1)
+        return np.argmax(gamma,1)
+    
+    def viterbi(self,O):
+        T,N = len(O),self.n_components
+        delta = np.zeros((T,N))
+        psi = np.zeros((T,N))
+        for t in range(T):
+            if t==0:
+                delta[t,:] = self.pi*self.B[:,O[t]].reshape(-1)
+            else:
+                delta[t,:] = np.max(self.A*delta[t-1,:],1)*self.B[:,O[t]].reshape(-1)
+                psi[t,:] = np.argmax(self.A*delta[t-1,:],1)
+        path = []
+        max_prob = np.max(delta[-1,:])
+        path.append(np.argmax(delta,1)[-1])
+        for t in range(T-1,0,-1):
+            path.append(int(psi[t,int(path[-1])]))
+        return np.array(path[::-1])     
+```
+
+模拟一个长度为10的序列，预测算法结果如下：
+
+```{python}
+X, Z = model.sample(10)
+
+clf = HiddenMarkovModel(n_components=3)
+clf.pi = np.array([0.2, 0.4, 0.4])
+clf.A = np.array([[0.5, 0.2, 0.3],
+                  [0.3, 0.5, 0.2],
+                  [0.2, 0.3, 0.5]])
+clf.B = np.array([[0.5, 0.5], 
+                  [0.4, 0.6], 
+                  [0.7, 0.3]])
+                  
+print('状态序列:',Z,'\n近似算法估计:',clf.approx(X),'\n维特比算法估计:',clf.viterbi(X))
+```
 
