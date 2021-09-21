@@ -11,3 +11,4 @@
 - EM Algorithm (16-Sep-2021)
 - Hidden Markov Model (20-Sep-2021)
 - Clustering (20-Sep-2021)
+- Principal Component Analysis (21-Sep-2021)
