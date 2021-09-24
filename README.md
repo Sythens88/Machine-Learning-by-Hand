@@ -13,3 +13,4 @@
 - Clustering (20-Sep-2021)
 - Principal Component Analysis (21-Sep-2021)
 - Latent Semantic Analysis (22-Sep-2021)
+- Probabilistic Latent Semantic Analysis (24-Sep-2021)
