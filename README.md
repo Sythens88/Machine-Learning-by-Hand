@@ -15,3 +15,4 @@
 - Latent Semantic Analysis (22-Sep-2021)
 - Probabilistic Latent Semantic Analysis (24-Sep-2021)
 - Latent Dirichlet Allocation (27-Sep-2021)
+- PageRank (28-Sep-2021)
