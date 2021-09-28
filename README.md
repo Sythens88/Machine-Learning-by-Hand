@@ -25,7 +25,7 @@ Each model has been put in a folder and in each folder, there exist:
 
 - A pdf file which introduces the theory, implementation by sklearn and implementation by hand
 - A Rmd file which can be complied to the pdf file
-- Some files which only include codes like(.ipynb,.py,etc.)
+- Some files which only include codes (like .ipynb,.py,etc.)
 
 
 I use *Statistical Learning Methods, Second Edition, by Hang Li* as reference.
