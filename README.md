@@ -1,18 +1,31 @@
 # Machine-Learning-by-Hand
 
-- Perceptron (6-Sep-2021)
-- KNN (7-Sep-2021)
-- Naive Bayes (7-Sep-2021)
-- Decision Tree (10-Sep-2021)
-- SVM (13-Sep-2021)
-- AdaBoost (14-Sep-2021)
-- Gradient Boosting Tree (14-Sep-2021)
-- Random Forest (15-Sep-2021)
-- EM Algorithm (16-Sep-2021)
-- Hidden Markov Model (20-Sep-2021)
-- Clustering (20-Sep-2021)
-- Principal Component Analysis (21-Sep-2021)
-- Latent Semantic Analysis (22-Sep-2021)
-- Probabilistic Latent Semantic Analysis (24-Sep-2021)
-- Latent Dirichlet Allocation (27-Sep-2021)
-- PageRank (28-Sep-2021)
+I implement some famous machine learning methods by hand.
+
+These methods include:
+
+- Perceptron 
+- KNN 
+- Naive Bayes 
+- Decision Tree 
+- SVM 
+- AdaBoost 
+- Gradient Boosting Tree 
+- Random Forest 
+- EM Algorithm 
+- Hidden Markov Model 
+- Clustering 
+- Principal Component Analysis 
+- Latent Semantic Analysis 
+- Probabilistic Latent Semantic Analysis 
+- Latent Dirichlet Allocation 
+- PageRank 
+
+Each model has been put in a folder and in each folder, there exist:
+
+- A pdf file which introduces the theory, implementation by sklearn and implementation by hand
+- A Rmd file which can be complied to the pdf file
+- Some files which only include codes like(.ipynb,.py,etc.)
+
+
+I use *Statistical Learning Methods, Second Edition, by Hang Li* as reference.
